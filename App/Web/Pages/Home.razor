@@ -1,0 +1,20 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+@if(Products is not null){
+    foreach(var i in Products){
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <p class="card-title">@i.Name</p>
+            </div>
+            <div class="card-body">
+                <p class="card-subtitle">@i.Description</p>
+                <p class="card-text">Cantidad: @i.Qty.ToString()</p>
+                <p class="card-text">Precio: $@i.Price.ToString()</p>
+            </div>
+        </div>
+    }
+}else{
+    <p class="alert text-danger text-center">Loading....</p>
+}

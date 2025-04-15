@@ -16,7 +16,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddRouting(r => r.LowercaseUrls = true);
 
 builder.Services.AddDbContext<DataContext>(c => c.UseSqlServer(builder.Configuration.GetConnectionString("dbConn")));
-
+builder.Services.AddCors(c => c.AddPolicy("myCors", p =>
+{
+    p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+}));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
 builder.Services.AddScoped(typeof(IUnitOfWork<>), typeof(GenericUnitOfWork<>));
@@ -33,6 +36,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseCors("myCors");
 app.UseRouting();
 app.MapControllers();
 
