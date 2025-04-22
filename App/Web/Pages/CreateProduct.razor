@@ -1,0 +1,54 @@
+﻿@page "/addproduct"
+<div class="row justify-content-center">
+   <div class="col-md-8 col-lg-6">
+       <div class="card shadow">
+           <div class="card-header bg-primary text-white">
+               <h5 class="card-title mb-0">Formulario de Producto</h5>
+           </div>
+           <div class="card-body">
+                <EditForm OnValidSubmit="AddProduct" Model="product">
+                   <DataAnnotationsValidator/>
+                   <div class="mb-3">
+                       <label for="nombre" class="form-label">Nombre</label>
+                       <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre" @bind="product.Name">
+                       <ValidationMessage For="()=>product.Name" class="alert alert-danger"/>
+                   </div>
+
+                   <div class="mb-3">
+                       <label for="descripcion" class="form-label">Descripción</label>
+                       <textarea class="form-control" id="descripcion" rows="3" placeholder="Ingrese la descripción" @bind="product.Description"></textarea>
+                        <ValidationMessage For="()=>product.Description" class="alert alert-danger" />
+                   </div>
+
+                   <div class="mb-3">
+                       <label for="urlImagen" class="form-label">URL de imagen</label>
+                       <input type="url" class="form-control" id="urlImagen" placeholder="Ingrese la URL de la imagen" @bind="product.Image">
+                        <ValidationMessage For="()=>product.Image" class="alert alert-danger" />
+                   </div>
+
+                   <div class="row mb-3">
+                       <div class="col-md-6">
+                           <label for="precio" class="form-label">Precio</label>
+                           <div class="input-group">
+                               <span class="input-group-text">$</span>
+                               <input type="number" class="form-control" id="precio" placeholder="0.00" @bind="product.Price">
+                                <ValidationMessage For="()=>product.Price" class="alert alert-danger" />
+                           </div>
+                       </div>
+                       <div class="col-md-6">
+                           <label for="cantidad" class="form-label">Cantidad</label>
+                           <input type="number" class="form-control" id="cantidad" placeholder="Ingrese la cantidad" @bind="product.Qty">
+                            <ValidationMessage For="()=>product.Qty" class="alert alert-danger" />
+                       </div>
+                   </div>
+
+                   <div class="d-grid gap-2">
+                       <button type="submit" class="btn btn-primary">Guardar</button>
+                   </div>
+                </EditForm>
+           </div>
+       </div>
+   </div>
+</div>
+
+

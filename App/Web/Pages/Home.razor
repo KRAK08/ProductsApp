@@ -2,19 +2,27 @@
 
 <PageTitle>Home</PageTitle>
 
+<a href="/addproduct" class="btn btn-outline-dark fw-bolder">New Product</a>
 @if(Products is not null){
-    foreach(var i in Products){
-        <div class="card" style="width: 18rem;">
-            <div class="card-header">
-                <p class="card-title">@i.Name</p>
-            </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 py-5 px-5">
+    @foreach(var i in Products){
+        <div class="card h-100">
+            @* <img src="https://via.placeholder.com/300" class="card-img-top" alt="Producto 1"> *@
             <div class="card-body">
-                <p class="card-subtitle">@i.Description</p>
-                <p class="card-text">Cantidad: @i.Qty.ToString()</p>
-                <p class="card-text">Precio: $@i.Price.ToString()</p>
+                <h5 class="card-title">@i.Name</h5>
+                <p class="card-text">@i.Description</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="h5 text-primary">$@i.Price.ToString()</span>
+                </div>
+            </div>
+            <div class="card-footer bg-white">
+                <a href="#" class="btn btn-primary w-100">Añadir al carrito</a>
+                <button class="btn btn-danger" @onclick="()=>Delete(i.Id)">Eliminar</button>
             </div>
         </div>
     }
+    </div>
 }else{
     <p class="alert text-danger text-center">Loading....</p>
 }
+

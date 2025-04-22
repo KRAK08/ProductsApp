@@ -1,4 +1,5 @@
 ﻿using Api.UnitsOfWork.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Entities;
 

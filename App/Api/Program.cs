@@ -18,7 +18,9 @@ builder.Services.AddRouting(r => r.LowercaseUrls = true);
 builder.Services.AddDbContext<DataContext>(c => c.UseSqlServer(builder.Configuration.GetConnectionString("dbConn")));
 builder.Services.AddCors(c => c.AddPolicy("myCors", p =>
 {
-    p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    p.AllowAnyHeader()
+     .AllowAnyMethod()
+     .WithOrigins("https://localhost:7280");
 }));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
